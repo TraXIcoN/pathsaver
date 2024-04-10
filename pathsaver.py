@@ -10,47 +10,69 @@ import argcomplete
 SAVED_PATHS_FILE = os.path.expanduser('~/pathsaver')
 
 def save_path(variable_name, directory_path):
-    with open(SAVED_PATHS_FILE, 'a') as f:
-        f.write(f'export {variable_name}="{directory_path}"\n')
-    print(f"Saved '{directory_path}' as variable '{variable_name}'")
+    try:
+        with open(SAVED_PATHS_FILE, 'a') as f:
+            f.write(f'export {variable_name}="{directory_path}"\n')
+        print(f"Saved '{directory_path}' as variable '{variable_name}'")
+    except OSError as e:
+        print(f"Error saving path: {e}", file=sys.stderr)
 
 def list_saved_paths():
-    paths = []
-    with open(SAVED_PATHS_FILE, 'r') as f:
-        for line in f:
-            if line.startswith("export"):
-                parts = line.strip().split("=")
-                variable_name = parts[0].split()[1]
-                directory_path = parts[1].strip('"')
-                paths.append((variable_name, directory_path))
-    return sorted(paths)
+    try:
+        paths = []
+        with open(SAVED_PATHS_FILE, 'r') as f:
+            for line in f:
+                if line.startswith("export"):
+                    parts = line.strip().split("=")
+                    variable_name = parts[0].split()[1]
+                    directory_path = parts[1].strip('"')
+                    paths.append((variable_name, directory_path))
+        return sorted(paths)
+    except FileNotFoundError:
+        print("Saved paths file not found.")
+        return []
+    except PermissionError:
+        print("Permission denied while accessing saved paths file.")
+        return []
 
 def delete_path(variable_name):
-    with open(SAVED_PATHS_FILE, 'r') as f:
-        lines = f.readlines()
-    with open(SAVED_PATHS_FILE, 'w') as f:
-        for line in lines:
-            if not line.startswith(f'export {variable_name}'):
-                f.write(line)
-    print(f"Deleted path with variable name '{variable_name}'")
+    try:
+        with open(SAVED_PATHS_FILE, 'r') as f:
+            lines = f.readlines()
+        with open(SAVED_PATHS_FILE, 'w') as f:
+            for line in lines:
+                if not line.startswith(f'export {variable_name}'):
+                    f.write(line)
+        print(f"Deleted path with variable name '{variable_name}'")
+    except FileNotFoundError:
+        print("Saved paths file not found.")
+    except PermissionError:
+        print("Permission denied while accessing saved paths file.")
 
 def delete_all_paths():
-    if os.path.exists(SAVED_PATHS_FILE):
-        with open(SAVED_PATHS_FILE, 'w') as f:
-            f.truncate(0)
-        print("All saved paths have been deleted.")
-    else:
-        print("No saved paths to delete.")
+    try:
+        if os.path.exists(SAVED_PATHS_FILE):
+            with open(SAVED_PATHS_FILE, 'w') as f:
+                f.truncate(0)
+            print("All saved paths have been deleted.")
+        else:
+            print("No saved paths to delete.")
+    except PermissionError:
+        print("Permission denied while accessing saved paths file.")
 
 def get_variable_names():
-    variable_names = []
-    with open(SAVED_PATHS_FILE, 'r') as f:
-        for line in f:
-            if line.startswith("export"):
-                parts = line.strip().split("=")
-                variable_name = parts[0].split()[1]
-                variable_names.append(variable_name)
-    return variable_names
+    try:
+        variable_names = []
+        with open(SAVED_PATHS_FILE, 'r') as f:
+            for line in f:
+                if line.startswith("export"):
+                    parts = line.strip().split("=")
+                    variable_name = parts[0].split()[1]
+                    variable_names.append(variable_name)
+        return variable_names
+    except FileNotFoundError:
+        print("Saved paths file not found.")
+        return []
 
 def main():
     parser = argparse.ArgumentParser(description="Save, list, and delete paths")
@@ -82,4 +104,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
