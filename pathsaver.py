@@ -7,7 +7,7 @@ from tabulate import tabulate
 import argcomplete
 
 # Define the path to the file where paths will be saved
-SAVED_PATHS_FILE = os.path.expanduser('~/.saved_paths')
+SAVED_PATHS_FILE = os.path.expanduser('~/pathsaver')
 
 def save_path(variable_name, directory_path):
     with open(SAVED_PATHS_FILE, 'a') as f:
