@@ -17,6 +17,8 @@ pip install pathsaver
 ### Using Homebrew (macOS)
 
 ```bash
+brew tap TraXIcoN/pathsaver https://github.com/TraXIcoN/homebrew-pathsaver.git
+
 brew install path/to/pathsaver.rb
 ```
 
