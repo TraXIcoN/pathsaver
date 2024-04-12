@@ -1,71 +1,82 @@
-# pathsaver
+Certainly! Here's an updated README.md with instructions for pip installation:
 
-A brew package for saving directory paths
-Sure, here's a template for a README file for your package:
+````markdown
+# PathSaver
 
-````
-# Pathsaver
-
-Pathsaver is a command-line tool for saving, listing, and deleting directory paths conveniently. It provides a simple way to save frequently used directory paths as variables, making it easier to navigate the file system in the terminal.
-
-## Features
-
-- Save directory paths with custom variable names
-- List saved paths with their corresponding variable names
-- Delete saved paths by variable name
-- Delete all saved paths at once
+PathSaver is a Python script for saving, listing, and managing directory paths.
 
 ## Installation
 
-Pathsaver can be installed using Homebrew on macOS:
+You can install PathSaver via pip:
 
 ```bash
-brew install TraXIcoN/pathsaver/pathsaver
+pip install pathsaver
+```
 ````
 
 ## Usage
 
-### Saving a Path
+After installation, you can use the `pathsaver` command-line utility to save, list, delete, and copy directory paths.
 
-To save a directory path with a custom variable name:
+### Save a Path
+
+To save a directory path with a custom variable name, use the following command:
 
 ```bash
-pathsaver mydir /path/to/directory
+pathsaver <variable_name> <directory_path>
 ```
 
-### Listing Saved Paths
+Replace `<variable_name>` with the name you want to assign to the directory path and `<directory_path>` with the actual directory path you want to save.
 
-To list all saved paths and their corresponding variable names:
+### List Saved Paths
+
+To list all saved paths, use the following command:
 
 ```bash
 pathsaver --list
 ```
 
-### Deleting a Saved Path
+### Delete a Saved Path
 
-To delete a saved path by its variable name:
+To delete a saved path by variable name, use the following command:
 
 ```bash
-pathsaver --delete mydir
+pathsaver --delete <variable_name>
 ```
 
-### Deleting All Saved Paths
+Replace `<variable_name>` with the name of the variable you want to delete.
 
-To delete all saved paths:
+### Delete All Saved Paths
+
+To delete all saved paths, use the following command:
 
 ```bash
 pathsaver --delete-all
 ```
 
-## Contributing
+### Copy a Saved Path to Clipboard
 
-Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request on GitHub.
+To copy a saved path to the clipboard, use the following command:
+
+```bash
+pathsaver --copy <variable_name>
+```
+
+Replace `<variable_name>` with the name of the variable whose path you want to copy.
+
+### Update Environment Variable
+
+To update the environment variable with saved paths, use the following command:
+
+```bash
+pathsaver --update-env
+```
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ```
 
-Feel free to customize the content to better fit your package's features, usage instructions, and contributing guidelines. Additionally, make sure to include relevant links, such as links to the GitHub repository, license file, and any other resources related to your package.
+Feel free to adjust the instructions or add more details as needed!
 ```

@@ -1,13 +1,13 @@
-#!/usr/bin/env python3
-
 import os
 import sys
 import argparse
 from tabulate import tabulate
 import argcomplete
+import subprocess
 
 # Define the path to the file where paths will be saved
 SAVED_PATHS_FILE = os.path.expanduser('~/pathsaver')
+
 
 def save_path(variable_name, directory_path):
     try:
@@ -74,6 +74,14 @@ def get_variable_names():
         print("Saved paths file not found.")
         return []
 
+
+def copy_to_clipboard(path):
+    try:
+        subprocess.run(['pbcopy'], input=path.encode('utf-8'), check=True)
+        print("Path copied to clipboard successfully.")
+    except subprocess.CalledProcessError:
+        print("Failed to copy path to clipboard.")
+
 def main():
     parser = argparse.ArgumentParser(description="Save, list, and delete paths")
     parser.add_argument("variable_name", nargs="?", help="Name of the variable to save/delete").completer = lambda *args: get_variable_names()
@@ -81,6 +89,7 @@ def main():
     parser.add_argument("--list", action="store_true", help="List saved paths")
     parser.add_argument("--delete", action="store_true", help="Delete a saved path by variable name")
     parser.add_argument("--delete-all", action="store_true", help="Delete all saved paths")
+    parser.add_argument("--copy", metavar="VAR_NAME", help="Copy a saved path to clipboard")
 
     argcomplete.autocomplete(parser)
 
@@ -99,8 +108,14 @@ def main():
         delete_all_paths()
     elif args.variable_name:
         save_path(args.variable_name, args.directory_path)
-    else:
-        parser.print_help(sys.stderr)
+    elif args.copy:
+        saved_paths = list_saved_paths()
+        for var_name, path in saved_paths:
+            if var_name == args.copy:
+                copy_to_clipboard(path)
+                break
+        else:
+            print(f"Variable '{args.copy}' is not defined or is empty.")
 
 if __name__ == "__main__":
     main()
