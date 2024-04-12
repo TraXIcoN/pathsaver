@@ -1,65 +1,69 @@
-# pathsaver
+Certainly! Here's a combined `README.md` file for both pip installation and brew installation:
 
-A brew package for saving directory paths
-Sure, here's a template for a README file for your package:
-
-````
+````markdown
 # Pathsaver
 
-Pathsaver is a command-line tool for saving, listing, and deleting directory paths conveniently. It provides a simple way to save frequently used directory paths as variables, making it easier to navigate the file system in the terminal.
-
-## Features
-
-- Save directory paths with custom variable names
-- List saved paths with their corresponding variable names
-- Delete saved paths by variable name
-- Delete all saved paths at once
+A tool for saving and managing directory paths conveniently.
 
 ## Installation
 
-Pathsaver can be installed using Homebrew on macOS:
+### Using pip (Python Package Index)
 
 ```bash
-brew install TraXIcoN/pathsaver/pathsaver
+pip install pathsaver
+```
 ````
+
+### Using Homebrew (macOS)
+
+```bash
+brew install path/to/pathsaver.rb
+```
 
 ## Usage
 
-### Saving a Path
-
-To save a directory path with a custom variable name:
-
 ```bash
-pathsaver mydir /path/to/directory
+# Save a directory path
+pathsaver <variable_name> <directory_path>
+
+# List saved paths
+pathsaver --list
+
+# Delete a saved path
+pathsaver --delete <variable_name>
+
+# Delete all saved paths
+pathsaver --delete-all
+
+# Copy a saved path to clipboard
+pathsaver --copy <variable_name>
 ```
 
-### Listing Saved Paths
+For detailed usage and options, you can run:
 
-To list all saved paths and their corresponding variable names:
+```bash
+pathsaver --help
+```
+
+## Example
+
+Save a path with a variable name:
+
+```bash
+pathsaver project ~/Documents/Projects/project
+```
+
+List all saved paths:
 
 ```bash
 pathsaver --list
 ```
 
-### Deleting a Saved Path
-
-To delete a saved path by its variable name:
+Delete a saved path:
 
 ```bash
-pathsaver --delete mydir
+pathsaver --delete project
 ```
-
-### Deleting All Saved Paths
-
-To delete all saved paths:
-
-```bash
-pathsaver --delete-all
-```
-
-## Contributing
-
-Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request on GitHub.
 
 ## License
 
@@ -67,5 +71,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ```
 
-Feel free to customize the content to better fit your package's features, usage instructions, and contributing guidelines. Additionally, make sure to include relevant links, such as links to the GitHub repository, license file, and any other resources related to your package.
+This README provides installation instructions for both pip and Homebrew, along with usage examples for the `pathsaver` tool. Adjust the paths and commands as needed based on your project structure and requirements.
 ```
