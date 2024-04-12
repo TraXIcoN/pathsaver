@@ -1,82 +1,75 @@
-Certainly! Here's an updated README.md with instructions for pip installation:
+Certainly! Here's a combined `README.md` file for both pip installation and brew installation:
 
 ````markdown
-# PathSaver
+# Pathsaver
 
-PathSaver is a Python script for saving, listing, and managing directory paths.
+A tool for saving and managing directory paths conveniently.
 
 ## Installation
 
-You can install PathSaver via pip:
+### Using pip (Python Package Index)
 
 ```bash
 pip install pathsaver
 ```
 ````
 
-## Usage
-
-After installation, you can use the `pathsaver` command-line utility to save, list, delete, and copy directory paths.
-
-### Save a Path
-
-To save a directory path with a custom variable name, use the following command:
+### Using Homebrew (macOS)
 
 ```bash
-pathsaver <variable_name> <directory_path>
+brew install path/to/pathsaver.rb
 ```
 
-Replace `<variable_name>` with the name you want to assign to the directory path and `<directory_path>` with the actual directory path you want to save.
+## Usage
 
-### List Saved Paths
+```bash
+# Save a directory path
+pathsaver <variable_name> <directory_path>
 
-To list all saved paths, use the following command:
+# List saved paths
+pathsaver --list
+
+# Delete a saved path
+pathsaver --delete <variable_name>
+
+# Delete all saved paths
+pathsaver --delete-all
+
+# Copy a saved path to clipboard
+pathsaver --copy <variable_name>
+```
+
+For detailed usage and options, you can run:
+
+```bash
+pathsaver --help
+```
+
+## Example
+
+Save a path with a variable name:
+
+```bash
+pathsaver project ~/Documents/Projects/project
+```
+
+List all saved paths:
 
 ```bash
 pathsaver --list
 ```
 
-### Delete a Saved Path
-
-To delete a saved path by variable name, use the following command:
+Delete a saved path:
 
 ```bash
-pathsaver --delete <variable_name>
-```
-
-Replace `<variable_name>` with the name of the variable you want to delete.
-
-### Delete All Saved Paths
-
-To delete all saved paths, use the following command:
-
-```bash
-pathsaver --delete-all
-```
-
-### Copy a Saved Path to Clipboard
-
-To copy a saved path to the clipboard, use the following command:
-
-```bash
-pathsaver --copy <variable_name>
-```
-
-Replace `<variable_name>` with the name of the variable whose path you want to copy.
-
-### Update Environment Variable
-
-To update the environment variable with saved paths, use the following command:
-
-```bash
-pathsaver --update-env
+pathsaver --delete project
 ```
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ```
 
-Feel free to adjust the instructions or add more details as needed!
+This README provides installation instructions for both pip and Homebrew, along with usage examples for the `pathsaver` tool. Adjust the paths and commands as needed based on your project structure and requirements.
 ```
